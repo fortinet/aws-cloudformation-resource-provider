@@ -107,10 +107,8 @@ public class DeleteHandler extends BaseHandler<CallbackContext> {
 
         // All hosts will be valid
         HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
-
-         String payload = "{" +
-         "\"vdom\":" + "\"" + model.getVdom() + "\"" +  "," +
-         "}";
+        JSONObject payload = new JSONObject();
+        payload.put("vdom", model.getVdom());
 
         String bearerToken = model.getAPIKey();
         String requestUrl = "https://" + model.getFortigateIP() + "/api/v2/cmdb/system/interface/" + model.getName();
@@ -119,7 +117,7 @@ public class DeleteHandler extends BaseHandler<CallbackContext> {
         int responseCode ;
 
         if(bearerToken != null ){
-            response = sendDeleteRequest(requestUrl, payload, bearerToken);
+            response = sendDeleteRequest(requestUrl, payload.toString(), bearerToken);
             responseCode = response.getStatusLine().getStatusCode();
         }
         else{

@@ -106,21 +106,15 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
         // All hosts will be valid
         HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 
-         String payload = "{" +
-
-
-         "\"name\":" + "\"" + model.getName() + "\"" +  "," +
-         "\"mode\":" + "\"" + model.getMode() + "\"" +  "," +
-         "\"vdom\":" + "\"" + model.getVdom() + "\"" +  "," +
-         "\"type\":" + "\"" + model.getType() + "\"" +  "," +
-         "\"role\":" + "\"" + model.getRole() + "\"" +  "," +
-
-         "\"allowaccess\":" + "\"" + model.getAllowaccess() + "\"" +  "," +
-         "\"vlanid\":"  + model.getVlanid()  +  "," +
-         "\"interface\":" + "\"" + model.getInterface_() + "\"" +
-         "}";
-
-
+        JSONObject payload = new JSONObject();
+        payload.put("name", model.getName());
+        payload.put("mode",model.getMode());
+        payload.put("vdom", model.getVdom());
+        payload.put("type", model.getType());
+        payload.put("role", model.getRole());
+        payload.put("allowaccess", model.getAllowAccess());
+        payload.put("vlanid", model.getVlanid());
+        payload.put("interface", model.getInterface());
 
         String bearerToken = model.getAPIKey();
         String requestUrl = "https://" + model.getFortigateIP() + "/api/v2/cmdb/system/interface/" + model.getName();
@@ -128,7 +122,7 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
         HttpResponse response;
         int responseCode ;
         if(bearerToken != null && !bearerToken.isEmpty() && requestUrl != null && !requestUrl.isEmpty() ){
-            response = sendPostRequest(requestUrl, payload, bearerToken);
+            response = sendPostRequest(requestUrl, payload.toString(), bearerToken);
             responseCode = response.getStatusLine().getStatusCode();
         }
         else{

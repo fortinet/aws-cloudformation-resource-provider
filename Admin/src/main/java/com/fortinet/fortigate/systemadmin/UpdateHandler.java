@@ -106,11 +106,10 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
         // All hosts will be valid
         HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 
-        String payload = "{" +
-        "\"name\":" + "\"" + model.getName()+ "\"" + "," +
-         "\"password\":" + "\"" + model.getPassword() + "\"" +  "," +
-          "\"accprofile\":" + "\"" + model.getAccprofile() + "\"" +
-           "}";
+        JSONObject payload = new JSONObject();
+        payload.put("name", model.getName());
+        payload.put("password",model.getPassword());
+        payload.put("accprofile",model.getAccprofile());
 
 
 
@@ -120,7 +119,7 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
         HttpResponse response;
         int responseCode ;
         if(bearerToken != null && !bearerToken.isEmpty() && requestUrl != null && !requestUrl.isEmpty() ){
-            response = sendPostRequest(requestUrl, payload, bearerToken);
+            response = sendPostRequest(requestUrl, payload.toString(), bearerToken);
             responseCode = response.getStatusLine().getStatusCode();
         }
         else{

@@ -9,7 +9,9 @@ env/
 install.sh
 baseTemplate.json
 .factorypath
-
+.settings
+.classpath
+.project
 # project-specific
 **/dist
 **/local

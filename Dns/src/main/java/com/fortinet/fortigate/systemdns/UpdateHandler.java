@@ -64,9 +64,6 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
             final Logger logger) {
 
         final ResourceModel model = request.getDesiredResourceState();
-
-        URL url;
-
         TrustManager[] trustAllCerts = new TrustManager[] { new X509TrustManager() {
             public java.security.cert.X509Certificate[] getAcceptedIssuers() {
                 return null;
@@ -103,8 +100,10 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
 
         HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 
-        String payload = "{" + "\"primary\":" + "\"" + model.getPrimary() + "\"" + "," + "\"secondary\":" + "\""
-                + model.getSecondary() + "\"" + "," + "}";
+        JSONObject payload = new JSONObject();
+        payload.put("primary", model.getPrimary());
+        payload.put("secondary",model.getSecondary());
+
 
         String bearerToken = model.getAPIKey();
         String requestUrl = "https://" + model.getFortigateIP() + "/api/v2/cmdb/system/dns";
@@ -113,7 +112,7 @@ public class UpdateHandler extends BaseHandler<CallbackContext> {
         HttpResponse response;
         int responseCode;
         if (bearerToken != null && !bearerToken.isEmpty() && requestUrl != null && !requestUrl.isEmpty()) {
-            response = sendPostRequest(requestUrl, payload, bearerToken);
+            response = sendPostRequest(requestUrl, payload.toString(), bearerToken);
             responseCode = response.getStatusLine().getStatusCode();
         } else {
             return ProgressEvent.<ResourceModel, CallbackContext>builder().resourceModel(model)

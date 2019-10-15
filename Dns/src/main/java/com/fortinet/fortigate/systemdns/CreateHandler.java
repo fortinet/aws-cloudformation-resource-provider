@@ -104,19 +104,17 @@ public class CreateHandler extends BaseHandler<CallbackContext> {
 
     HttpsURLConnection.setDefaultHostnameVerifier(validHosts);
 
-    //TODO: implment better way to handle JSON
+    JSONObject payload = new JSONObject();
+    payload.put("primary", model.getPrimary());
+    payload.put("secondary",model.getSecondary());
 
-     String payload = "{" +
-       "\"primary\":" + "\"" + model.getPrimary()+ "\"" + "," +
-       "\"secondary\":" + "\"" + model.getSecondary()+ "\"" + "," +
-        "}";
 
     String bearerToken = model.getAPIKey();
     String requestUrl = "https://" + model.getFortigateIP() + "/api/v2/cmdb/system/dns";
     HttpResponse response;
     int responseCode ;
     if(bearerToken != null && !bearerToken.isEmpty() && requestUrl != null && !requestUrl.isEmpty() ){
-        response = sendPostRequest(requestUrl, payload, bearerToken);
+        response = sendPostRequest(requestUrl, payload.toString(), bearerToken);
         responseCode = response.getStatusLine().getStatusCode();
     }
     else{
