@@ -1,0 +1,80 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Update Vlan Interface on a FortiGate",
+
+      "Parameters": {
+          "APIKey":{
+              "Type": "String",
+              "Default": "",
+              "NoEcho" : "true",
+              "Description": "FortiGate API Key"
+          },
+          "FortigateIP":{
+              "Type": "String",
+              "Default": "",
+              "Description": "FortiGate IP address or hostname"
+          },
+          "Name": {
+              "Description": "Vlan Interface Name",
+              "Type": "String"
+          },
+          "Mode": {
+              "Description": "Addressing mode (static, DHCP, PPPoE).   static:Static setting.   dhcp:External DHCP client mode.   pppoe:External PPPoE mode.",
+              "Type": "String"
+          },
+          "Vlanid": {
+            "Description": "VLAN ID (1 - 4094)",
+            "Type": "String"
+        },
+        "Role": {
+            "Description": "Interface role.   lan:Connected to local network of endpoints.   wan:Connected to Internet.   dmz:Connected to server zone.  undefined:Interface has no specific role.",
+            "Type": "String",
+            "Default": "undefined",
+            "AllowedValues":["lan", "wan", "dmz", "undefined"]
+
+        },
+        "Interface": {
+            "Description": "Interface name. Example: port1",
+            "Type": "String"
+        },
+        "Vdom": {
+            "Description": "Interface is in this virtual domain (VDOM).Default is root",
+            "Default": "root",
+            "Type": "String"
+        },
+        "Type": {
+            "Default": "vlan",
+            "Description": "Interface type. Currently Supports vlan",
+            "Type": "String"
+        },
+        "Allowaccess": {
+            "Description": "Allowed Values ping, https, ssh, snmp, http, telnet, fgfm, radius-acct, probe-response, capwap, ftm",
+            "Type": "String",
+            "Default":"ping https ssh snmp http telnet fgfm radius-acct probe-response capwap ftm"
+
+        },
+        "Distance": {
+            "Description": "Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route",
+            "Type": "Number",
+            "Default":5
+        }
+      },
+      "Resources":{
+          "CreateInterface":{
+              "Type":"Fortinet::FortiGate::SystemInterface",
+              "Properties":{
+                    "APIKey":{"Ref":"APIKey"},
+                    "FortigateIP":{"Ref":"FortigateIP"},
+                    "Name":{"Ref":"Name"},
+                    "Mode":{"Ref":"Mode"},
+                    "Vlanid":{"Ref":"Vlanid"},
+                    "Role": {"Ref":"Role"},
+                    "Interface":{"Ref":"Interface"},
+                    "Vdom":{"Ref":"Vdom"},
+                    "Type":{"Ref":"Type"},
+                    "Allowaccess":{"Ref":"Allowaccess"},
+                    "Distance":{"Ref":"Distance"}
+              }
+          }
+      }
+  }

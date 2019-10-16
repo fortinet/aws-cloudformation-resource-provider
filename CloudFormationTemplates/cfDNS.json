@@ -1,0 +1,39 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Update DNS on a FortiGate",
+
+    "Parameters": {
+        "APIKey":{
+            "Type": "String",
+            "Default": "",
+            "Description": "FortiGate API key",
+            "NoEcho" : "true"
+        },
+        "FortigateIP":{
+            "Type": "String",
+            "Default": "",
+            "Description": "FortiGate IP address or hostname"
+        },
+        "Primary": {
+            "Description": "Primary DNS server IP address, default is FortiGuard server at 208.81.112.53.",
+            "Type": "String"
+        },
+        "Secondary": {
+            "Description": "Secondary DNS server IP address, default is FortiGuard server at 208.81.112.52.",
+            "Type": "String"
+        }
+
+    },
+    "Resources":{
+        "CreateDNS":{
+            "Type":"Fortinet::FortiGate::SystemDns",
+            "Properties":{
+                "APIKey":{"Ref":"APIKey"},
+                "FortigateIP":{"Ref":"FortigateIP"},
+                "Primary":{"Ref":"Primary"},
+                "Secondary":{"Ref":"Secondary"}
+
+            }
+        }
+    }
+}

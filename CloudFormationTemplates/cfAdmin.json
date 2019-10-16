@@ -1,0 +1,46 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Create an Admin User on a FortiGate.",
+
+    "Parameters": {
+        "Name":{
+            "Type": "String",
+            "Default": "",
+            "Description": "Admin user name"
+        },
+        "APIKey":{
+            "Type": "String",
+            "Default": "",
+            "Description": "FortiGate API Key",
+            "NoEcho" : "true"
+        },
+        "FortigateIP":{
+            "Type": "String",
+            "Default": "",
+            "Description": "FortiGate Ip Or hostname, Do not include https://"
+        },
+        "Password":{
+            "Type": "String",
+            "Default": "",
+            "Description": "Admin user password."
+        },
+        "Accprofile":{
+            "Type": "String",
+            "Default": "",
+            "Description": "Access profile for this administrator. Access profiles control administrator access to FortiGate features."
+        }
+    },
+
+    "Resources":{
+        "CreateAdmin":{
+            "Type":"Fortinet::Fortigate::system",
+            "Properties":{
+                "Name":{"Ref":"Name"},
+                "FortigateIP":{"Ref":"FortigateIP"},
+                "APIKey":{"Ref":"APIKey"},
+                "Password":{"Ref":"Password"},
+                "Accprofile":{"Ref":"Accprofile"}
+            }
+        }
+    }
+}
