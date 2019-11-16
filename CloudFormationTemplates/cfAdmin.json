@@ -33,7 +33,7 @@
 
     "Resources":{
         "CreateAdmin":{
-            "Type":"Fortinet::Fortigate::system",
+            "Type":"Fortinet::FortiGate::SystemAdmin",
             "Properties":{
                 "Name":{"Ref":"Name"},
                 "FortigateIP":{"Ref":"FortigateIP"},

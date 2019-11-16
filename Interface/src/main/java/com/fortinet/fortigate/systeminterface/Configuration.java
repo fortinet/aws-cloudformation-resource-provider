@@ -1,6 +1,5 @@
 package com.fortinet.fortigate.systeminterface;
 
-import java.io.InputStream;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 

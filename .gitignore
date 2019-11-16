@@ -6,6 +6,7 @@ lombok.config
 target/
 swagger_api_v2_cmdb_system.json
 env/
+.idea/
 install.sh
 baseTemplate.json
 .factorypath
