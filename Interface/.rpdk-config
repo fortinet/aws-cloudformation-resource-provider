@@ -1,0 +1,15 @@
+{
+    "typeName": "Fortinet::FortiGate::SystemInterface",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "com.fortinet.fortigate.systeminterface.HandlerWrapper::handleRequest",
+    "testEntrypoint": "com.fortinet.fortigate.systeminterface.HandlerWrapper::testEntrypoint",
+    "settings": {
+        "namespace": [
+            "com",
+            "fortinet",
+            "fortigate",
+            "systeminterface"
+        ]
+    }
+}
