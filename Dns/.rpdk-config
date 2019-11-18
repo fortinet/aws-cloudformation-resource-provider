@@ -1,0 +1,15 @@
+{
+    "typeName": "Fortinet::FortiGate::SystemDns",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "com.fortinet.fortigate.systemdns.HandlerWrapper::handleRequest",
+    "testEntrypoint": "com.fortinet.fortigate.systemdns.HandlerWrapper::testEntrypoint",
+    "settings": {
+        "namespace": [
+            "com",
+            "fortinet",
+            "fortigate",
+            "systemdns"
+        ]
+    }
+}

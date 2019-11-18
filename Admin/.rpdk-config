@@ -1,0 +1,15 @@
+{
+    "typeName": "Fortinet::FortiGate::SystemAdmin",
+    "language": "java",
+    "runtime": "java8",
+    "entrypoint": "com.fortinet.fortigate.systemadmin.HandlerWrapper::handleRequest",
+    "testEntrypoint": "com.fortinet.fortigate.systemadmin.HandlerWrapper::testEntrypoint",
+    "settings": {
+        "namespace": [
+            "com",
+            "fortinet",
+            "fortigate",
+            "systemadmin"
+        ]
+    }
+}
