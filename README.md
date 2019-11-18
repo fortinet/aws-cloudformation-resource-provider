@@ -6,15 +6,15 @@ ForitGate CloudFormation resources allow you to interact with components of the 
 * FortiGate must have a public IP address that is reachable from the Internet.
 
 # Set up
-1. Install the `cfn-cli` package.
+1. Install the `cfn` package.
 2. Download the ZIP file for the required resource from S3.
     The Following resources are currently availble:
-    [Create an Admin user](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systemadmin-handler-1.0-SNAPSHOT.jar)
-    [Create a Vlan interface](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systeminterface-handler-1.0-SNAPSHOT.jar)
-    [Update DNS](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systemdns-handler-1.0-SNAPSHOT.jar)
+    [Create an Admin user](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systemadmin.zip)<br>
+    [Create a Vlan interface](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systeminterface.zip)<br>
+    [Update DNS](https://cloudformation-resource-provider.s3-us-west-2.amazonaws.com/fortinet-fortigate-systemdns.zip)<br>
 3. Locate the downloaded package and upload it to AWS CloudFormation using the command:
    ```sh
-   cfn-cli submit -v --region <region>
+   cfn submit -v --region <region>
    ```
 4. Use the token output to monitor the registration process:
    ```sh

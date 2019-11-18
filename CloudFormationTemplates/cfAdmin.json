@@ -22,9 +22,15 @@
         "Password":{
             "Type": "String",
             "Default": "",
-            "Description": "Admin user password."
+            "Description": "Admin user password.",
+            "NoEcho" : "true"
         },
         "Accprofile":{
+            "Type": "String",
+            "Default": "",
+            "Description": "Access profile for this administrator. Access profiles control administrator access to FortiGate features."
+        },
+        "VDOM":{
             "Type": "String",
             "Default": "",
             "Description": "Access profile for this administrator. Access profiles control administrator access to FortiGate features."
@@ -33,7 +39,7 @@
 
     "Resources":{
         "CreateAdmin":{
-            "Type":"Fortinet::Fortigate::system",
+            "Type":"Fortinet::FortiGate::SystemAdmin",
             "Properties":{
                 "Name":{"Ref":"Name"},
                 "FortigateIP":{"Ref":"FortigateIP"},

@@ -1,4 +1,4 @@
-package com.fortinet.fortigate.systeminterface;
+package com.fortinet.fortigate.systemdns;
 
 import com.amazonaws.cloudformation.proxy.AmazonWebServicesClientProxy;
 import com.amazonaws.cloudformation.proxy.Logger;
